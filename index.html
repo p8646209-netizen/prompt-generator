@@ -3,41 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chatbot + Prompt Generator</title>
+    <title>AI Chatbot & Video Prompt Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🤖 AI Chat & Prompt Generator</h1>
-            <p>Chat with AI or generate prompts from videos</p>
-        </div>
+        <header>
+            <h1>🤖 AI Chatbot & 🎬 Video Prompt Generator</h1>
+            <p>Powered by Google Gemini AI</p>
+        </header>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('chat')">💬 Chat</button>
-            <button class="tab-btn" onclick="switchTab('prompt')">🎬 Prompt Generator</button>
+            <button class="tab-btn active" onclick="switchTab('chatTab')">💬 AI Chat</button>
+            <button class="tab-btn" onclick="switchTab('generatorTab')">🎬 Video Prompt</button>
         </div>
 
         <!-- Chat Tab -->
-        <div id="chat" class="tab-content active">
-            <div class="chat-box">
+        <div id="chatTab" class="tab-content active">
+            <div class="chat-container">
                 <div id="chatMessages" class="messages"></div>
-            </div>
-            <div class="chat-input-area">
-                <textarea id="userInput" placeholder="Ask anything..."></textarea>
-                <button onclick="sendMessage()">Send</button>
+                <div class="input-area">
+                    <input 
+                        type="text" 
+                        id="userInput" 
+                        placeholder="Ask me anything..." 
+                        onkeypress="if(event.key==='Enter') sendMessage()"
+                    >
+                    <button onclick="sendMessage()">Send 📤</button>
+                </div>
             </div>
         </div>
 
-        <!-- Prompt Generator Tab -->
-        <div id="prompt" class="tab-content">
-            <div class="prompt-container">
-                <h3>Upload Video & Generate Prompt</h3>
-                <input type="file" id="videoFile" accept="video/*" onchange="handleVideoUpload()">
-                <p id="fileInfo"></p>
-                <textarea id="promptOutput" placeholder="Your prompt will appear here..." readonly></textarea>
-                <button onclick="generatePrompt()">Generate Prompt from Video</button>
-                <button onclick="copyPrompt()" class="copy-btn">Copy Prompt</button>
+        <!-- Video Prompt Generator Tab -->
+        <div id="generatorTab" class="tab-content">
+            <div class="generator-container">
+                <div class="upload-section">
+                    <h2>📹 Upload Video</h2>
+                    <div class="file-input-wrapper">
+                        <input 
+                            type="file" 
+                            id="videoFile" 
+                            accept="video/*"
+                            onchange="handleVideoUpload()"
+                        >
+                        <label for="videoFile">Choose Video File</label>
+                    </div>
+                    <div id="fileInfo" class="file-info">No file selected</div>
+                </div>
+
+                <button onclick="generatePrompt()" class="generate-btn">🎬 Generate Prompt</button>
+
+                <div class="output-section">
+                    <h2>📝 Generated Prompt</h2>
+                    <textarea id="promptOutput" readonly placeholder="Your AI-generated prompt will appear here..."></textarea>
+                    <button onclick="copyPrompt()" class="copy-btn">📋 Copy Prompt</button>
+                </div>
             </div>
         </div>
     </div>
