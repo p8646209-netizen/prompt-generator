@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot + Prompt Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Chat & Prompt Generator</h1>
+            <p>Chat with AI or generate prompts from videos</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('chat')">💬 Chat</button>
+            <button class="tab-btn" onclick="switchTab('prompt')">🎬 Prompt Generator</button>
+        </div>
+
+        <!-- Chat Tab -->
+        <div id="chat" class="tab-content active">
+            <div class="chat-box">
+                <div id="chatMessages" class="messages"></div>
+            </div>
+            <div class="chat-input-area">
+                <textarea id="userInput" placeholder="Ask anything..."></textarea>
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+        <!-- Prompt Generator Tab -->
+        <div id="prompt" class="tab-content">
+            <div class="prompt-container">
+                <h3>Upload Video & Generate Prompt</h3>
+                <input type="file" id="videoFile" accept="video/*" onchange="handleVideoUpload()">
+                <p id="fileInfo"></p>
+                <textarea id="promptOutput" placeholder="Your prompt will appear here..." readonly></textarea>
+                <button onclick="generatePrompt()">Generate Prompt from Video</button>
+                <button onclick="copyPrompt()" class="copy-btn">Copy Prompt</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
